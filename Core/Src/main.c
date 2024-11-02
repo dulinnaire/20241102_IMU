@@ -45,7 +45,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+int16_t rx, ry, rz;
+int16_t ax, ay, az;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -89,15 +90,17 @@ int main(void) {
     MX_SPI1_Init();
     MX_TIM1_Init();
     /* USER CODE BEGIN 2 */
-    HAL_TIM_Base_Start_IT(&htim1);
+    // HAL_TIM_Base_Start_IT(&htim1);
     BMI088_init();
+
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
         /* USER CODE END WHILE */
-
+        BMI088_get_gyro_data(&rx, &ry, &rz);
+        BMI088_get_accel_data(&ax, &ay, &az);
         /* USER CODE BEGIN 3 */
     }
     /* USER CODE END 3 */
