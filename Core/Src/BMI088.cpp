@@ -111,7 +111,7 @@ void BMI088_gyro_burst_read(uint8_t reg, uint8_t rxdata[], uint8_t size) {
 }
 
 // get data
-void BMI088_get_accel_data(int16_t* accel_x, int16_t* accel_y, int16_t* accel_z) {
+void BMI088_get_accel_data_int(int16_t* accel_x, int16_t* accel_y, int16_t* accel_z) {
     uint8_t rx_buffer[6];
     BMI088_accel_burst_read(ACC_DATA, rx_buffer, 6);
     *accel_x = rx_buffer[1] << 8 | rx_buffer[0];
@@ -119,10 +119,32 @@ void BMI088_get_accel_data(int16_t* accel_x, int16_t* accel_y, int16_t* accel_z)
     *accel_z = rx_buffer[5] << 8 | rx_buffer[4];
 }
 
-void BMI088_get_gyro_data(int16_t* rate_x, int16_t* rate_y, int16_t* rate_z) {
+void BMI088_get_gyro_data_int(int16_t* rate_x, int16_t* rate_y, int16_t* rate_z) {
     uint8_t rx_buffer[6];
     BMI088_gyro_burst_read(RATE_DATA, rx_buffer, 6);
     *rate_x = rx_buffer[1] << 8 | rx_buffer[0];
     *rate_y = rx_buffer[3] << 8 | rx_buffer[2];
     *rate_z = rx_buffer[5] << 8 | rx_buffer[4];
+}
+
+inline float linear_mapping(float input, float i_min, float i_max, float o_min, float o_max) {
+    return (input - i_min) * (o_max - o_min) / (i_max - i_min) + o_min;
+}
+
+// unit: g
+void BMI088_get_accel_data(float* accel_x, float* accel_y, float* accel_z) {
+    int16_t x, y, z;
+    BMI088_get_accel_data_int(&x, &y, &z);
+    *accel_x = linear_mapping(x, -32768, 32767, -12, 12);
+    *accel_y = linear_mapping(y, -32768, 32767, -12, 12);
+    *accel_z = linear_mapping(z, -32768, 32767, -12, 12);
+}
+
+// unit: deg/s
+void BMI088_get_gyro_data(float* rate_x, float* rate_y, float* rate_z) {
+    int16_t x, y, z;
+    BMI088_get_gyro_data_int(&x, &y, &z);
+    *rate_x = linear_mapping(x, -32768, 32767, -2000, 2000);
+    *rate_y = linear_mapping(y, -32768, 32767, -2000, 2000);
+    *rate_z = linear_mapping(z, -32768, 32767, -2000, 2000);
 }

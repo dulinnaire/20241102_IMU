@@ -45,8 +45,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-int16_t rx, ry, rz;
-int16_t ax, ay, az;
+float rx, ry, rz;
+float ax, ay, az;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

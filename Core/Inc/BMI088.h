@@ -58,8 +58,12 @@ void BMI088_accel_burst_read(uint8_t reg, uint8_t rxdata[], uint8_t size);
 void BMI088_gyro_burst_read(uint8_t reg, uint8_t rxdata[], uint8_t size);
 
 // get data
-void BMI088_get_accel_data(int16_t* accel_x, int16_t* accel_y, int16_t* accel_z);
-void BMI088_get_gyro_data(int16_t* rate_x, int16_t* rate_y, int16_t* rate_z);
+void BMI088_get_accel_data_int(int16_t* accel_x, int16_t* accel_y, int16_t* accel_z);
+void BMI088_get_gyro_data_int(int16_t* rate_x, int16_t* rate_y, int16_t* rate_z);
+
+// unit conversion
+void BMI088_get_accel_data(float* accel_x, float* accel_y, float* accel_z);
+void BMI088_get_gyro_data(float* accel_x, float* accel_y, float* accel_z);
 
 #ifdef __cplusplus
 }
