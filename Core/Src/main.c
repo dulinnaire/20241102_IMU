@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "BMI088.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,6 +90,7 @@ int main(void) {
     MX_TIM1_Init();
     /* USER CODE BEGIN 2 */
     HAL_TIM_Base_Start_IT(&htim1);
+    BMI088_init();
     /* USER CODE END 2 */
 
     /* Infinite loop */

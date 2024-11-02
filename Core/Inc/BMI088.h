@@ -5,6 +5,10 @@
 #ifndef BMI088_H
 #define BMI088_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "gpio.h"
 #include "spi.h"
 #include "stm32f4xx.h"
@@ -48,5 +52,9 @@ uint8_t BMI088_accel_read_reg(uint8_t reg);
 
 uint8_t BMI088_gyro_read_reg(uint8_t reg);
 // read several bytes (burst read)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //BMI088_H

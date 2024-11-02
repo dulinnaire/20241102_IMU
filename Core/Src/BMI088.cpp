@@ -11,7 +11,7 @@ void BMI088_init() {
     BMI088_accel_write_reg(ACC_PWR_CTRL, 0x04);
 
     // configure output data rate
-    BMI088_accel_write_reg(ACC_CONF, 0x0B); // 800Hz
+    BMI088_accel_write_reg(ACC_CONF, 0xAB); // 800Hz
     BMI088_gyro_write_reg(GYRO_BANDWIDTH, 0x02); // 1000Hz
 
     // configure measurement range
