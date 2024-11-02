@@ -51,30 +51,30 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(AccelCS_GPIO_Port, AccelCS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(CS1_Accel_GPIO_Port, CS1_Accel_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GyroCS_GPIO_Port, GyroCS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(CS1_Gyro_GPIO_Port, CS1_Gyro_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = AccelCS_Pin;
+  GPIO_InitStruct.Pin = CS1_Accel_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(AccelCS_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(CS1_Accel_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PCPin PCPin */
-  GPIO_InitStruct.Pin = AccelINT_Pin|GyroINT_Pin;
+  GPIO_InitStruct.Pin = INT1_Accel_Pin|INT1_Gyro_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = GyroCS_Pin;
+  GPIO_InitStruct.Pin = CS1_Gyro_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GyroCS_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(CS1_Gyro_GPIO_Port, &GPIO_InitStruct);
 
 }
 
